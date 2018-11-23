@@ -1,6 +1,11 @@
-package com.santosh.sqlitetutorial
+package com.santosh.sqlitetutorial.models
 
-class Tracks {
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
+
+@Entity
+public class Tracks {
+    @PrimaryKey
     var TrackId: Int = 0
 
     var Name: String? = null

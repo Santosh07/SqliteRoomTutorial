@@ -1,11 +1,9 @@
 package com.santosh.sqlitetutorial.helper
 
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
-import com.santosh.sqlitetutorial.MainActivity
-import com.santosh.sqlitetutorial.Tracks
+import com.santosh.sqlitetutorial.activities.MainActivity
+import com.santosh.sqlitetutorial.models.Tracks
 import java.lang.Exception
 
 class QueryHelper(context: Context) {
