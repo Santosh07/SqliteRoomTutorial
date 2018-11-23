@@ -19,20 +19,15 @@ class MainActivity : AppCompatActivity() {
         val DB_NAME = "chinook.db"
     }
 
+    @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val mainViewModel = ViewModelProviders.of(this, viewModelFactory)[MainViewModel::class.java]
 
-        val dbHelper = SqliteDbHelper(this, DB_NAME)
-        if (!dbHelper.isDatabaseExists()) {
-            dbHelper.importDataBaseFromAssets()
-        } else {
-            Toast.makeText(this, "Database Already Exists", Toast.LENGTH_LONG).show()
-        }
-
-        QueryHelper(this).getTracks()
+        mainViewModel.initialiseDatabase()
     }
 }

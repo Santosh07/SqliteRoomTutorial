@@ -1,6 +1,7 @@
-package com.santosh.sqlitetutorial.di
+package com.santosh.sqlitetutorial.di.components
 
 import android.app.Application
+import android.arch.persistence.room.RoomDatabase
 import com.santosh.sqlitetutorial.di.modules.AppModule
 import com.santosh.sqlitetutorial.di.modules.ViewModelFactoryModule
 import dagger.BindsInstance
@@ -8,8 +9,11 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class, ViewModelFactoryModule::class])
+@Component(modules = [AppModule::class])
 interface AppComponent {
+    fun provideApplication(): Application
+
+    fun provideRoomDatabase(): RoomDatabase
 
     @Component.Builder
     interface Builder {
