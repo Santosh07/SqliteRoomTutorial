@@ -1,18 +1,20 @@
 package com.santosh.sqlitetutorial.helper
 
+import android.app.Application
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.santosh.sqlitetutorial.activities.MainActivity
 import com.santosh.sqlitetutorial.models.Tracks
 import java.lang.Exception
+import javax.inject.Inject
 
-class QueryHelper(context: Context) {
+class QueryHelper @Inject constructor(application: Application) {
     val context: Context
     val databaseHelper: SqliteDbHelper
     val database: SQLiteDatabase
 
     init {
-        this.context = context
+        this.context = application.applicationContext
         databaseHelper = SqliteDbHelper(context, MainActivity.DB_NAME)
         database = databaseHelper.writableDatabase
     }

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.io.*;
 
 public class SqliteDbHelper extends SQLiteOpenHelper {
@@ -15,7 +16,6 @@ public class SqliteDbHelper extends SQLiteOpenHelper {
     String divider = "/";
     String DB_NAME;
 
-    @Inject
     public SqliteDbHelper(Context context, String name) {
         super(context, name, null, 1);
         this.context = context;

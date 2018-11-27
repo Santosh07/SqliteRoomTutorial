@@ -7,7 +7,11 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.santosh.sqlitetutorial.R
+import com.santosh.sqlitetutorial.application.MyApp
 import com.santosh.sqlitetutorial.di.ViewModelFactory
+import com.santosh.sqlitetutorial.di.components.DaggerAppComponent
+import com.santosh.sqlitetutorial.di.components.DaggerViewModelComponent
+import com.santosh.sqlitetutorial.di.components.ViewModelComponent
 import com.santosh.sqlitetutorial.helper.QueryHelper
 import com.santosh.sqlitetutorial.helper.SqliteDbHelper
 import com.santosh.sqlitetutorial.viewmodels.MainViewModel
@@ -26,7 +30,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val mainViewModel = ViewModelProviders.of(this, viewModelFactory)[MainViewModel::class.java]
+        DaggerViewModelComponent.builder()
+            .appComponent((application as MyApp).appComponent)
+            .build()
+            .inject(this)
+
+        val mainViewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
 
         mainViewModel.initialiseDatabase()
     }

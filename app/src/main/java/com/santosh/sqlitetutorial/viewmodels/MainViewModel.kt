@@ -2,11 +2,13 @@ package com.santosh.sqlitetutorial.viewmodels
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
+import android.widget.Toast
 import com.santosh.sqlitetutorial.helper.QueryHelper
 import com.santosh.sqlitetutorial.helper.SqliteDbHelper
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(application: Application): AndroidViewModel(application) {
+class MainViewModel
+@Inject constructor(application: Application): AndroidViewModel(application) {
 
     @Inject
     lateinit var dbHelper: SqliteDbHelper
@@ -19,7 +21,7 @@ class MainViewModel @Inject constructor(application: Application): AndroidViewMo
         if (!dbHelper.isDatabaseExists()) {
             dbHelper.importDataBaseFromAssets()
         } else {
-            //Toast.makeText(this, "Database Already Exists", Toast.LENGTH_LONG).show()
+            Toast.makeText(getApplication(), "Database Already Exists", Toast.LENGTH_LONG).show()
         }
 
         queryHelper.getTracks()
